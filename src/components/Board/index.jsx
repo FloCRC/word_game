@@ -13,7 +13,7 @@ export default function Board({ gameKey }) {
                 row.className = "row flex p-1"
                 for (let j = 0; j < 6; j++) {
                     let box = document.createElement('div')
-                    box.className = "box border w-10 h-10 mx-1"
+                    box.className = "box border w-10 h-10 mx-1 p-1 flex items-center justify-center uppercase"
                     row.appendChild(box)
                 }
                 if (gameBoard != null) {
