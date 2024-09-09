@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 export default function Board({ gameKey }) {
 
-    const [board, setBoard] = useState('')
+    // const [board, setBoard] = useState('')
 
-    useEffect(() => {
+    // useEffect(() => {
         function createBoard() {
             let gameBoard = document.getElementById("game-board");
-            gameBoard.replaceChildren();
+            // gameBoard.replaceChildren();
             for (let i = 0; i < 7; i++) {
                 let row = document.createElement('div')
                 row.className = "row flex p-1"
@@ -23,14 +23,14 @@ export default function Board({ gameKey }) {
         }
 
         let newBoard = createBoard()
-        setBoard(newBoard)
+        // setBoard(newBoard)
 
-    }, [gameKey])
+    // }, [gameKey])
 
     return (
         <>
             <div id="game-board" className="flex flex-col items-center">
-                {board}
+                {newBoard}
             </div>
         </>
     )

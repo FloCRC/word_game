@@ -28,7 +28,7 @@ export default function App() {
     }, [gameKey])
 
     function newGame() {
-        setGameKey(gameKey + 1)
+        window.location.reload();
     }
 
     return (

@@ -43,6 +43,7 @@ export default function Game({ words, correctWord, gameKey }) {
         if (letterCount === 6) {
             return
         }
+        
         value = value.toLowerCase()
 
         let row = document.getElementsByClassName("row")[7 - guessesRemaining]
@@ -80,26 +81,52 @@ export default function Game({ words, correctWord, gameKey }) {
             return
         }
 
+        let boxColour = ''
+        let keyColour = ''
+        let correctBoxes = {
+            0: false,
+            1: false,
+            2: false,
+            3: false,
+            4: false,
+            5: false
+        }
+        let correctWordLetters = {}
+
+        for (let i = 0; i < correctWord.length; i++) {
+            if (!(correctWord[i] in correctWordLetters)) {
+                correctWordLetters[correctWord[i]] = 1
+            }
+            else {
+                correctWordLetters[correctWord[i]] += 1
+            }
+        }
+
         for (let i = 0; i < 6; i++) {
-            let boxColour = ''
             let box = row.children[i]
             let letter = currentGuess[i]
-            let letterPosition = correctWord.indexOf(currentGuess[i])
-
-            if (letterPosition === -1) {
-                boxColour = "bg-gray-200"
-                let keyColour = "bg-gray-600"
-                colourKeyboard(letter, keyColour)
-                box.classList.add(boxColour)
-            }
-            else if (currentGuess[i] === correctWord[i]) {
+            if (currentGuess[i] === correctWord[i]) {
                 boxColour = "bg-green-300"
-                let keyColour = "bg-green-300"
+                keyColour = "bg-green-300"
                 colourKeyboard(letter, keyColour)
                 box.classList.add(boxColour)
+                correctBoxes[i] = true
+                correctWordLetters[currentGuess[i]] -= 1
             }
-            else if (correctWord.indexOf(letter) != -1) {
+        }
+
+        for (let i = 0; i < 6; i++) {
+            let box = row.children[i]
+            let letter = currentGuess[i]
+            if ((correctWord.includes(currentGuess[i]) && correctBoxes[i] != true) && correctWordLetters[currentGuess[i]] > 0) {
                 boxColour = "bg-yellow-300"
+                box.classList.add(boxColour)
+                correctWordLetters[currentGuess[i]] -= 1
+            }
+            else {
+                boxColour = "bg-gray-200"
+                keyColour = "bg-gray-600"
+                colourKeyboard(letter, keyColour)
                 box.classList.add(boxColour)
             }
         }
