@@ -125,9 +125,11 @@ export default function Game({ words, correctWord, gameKey }) {
             }
             else {
                 boxColour = "bg-gray-200"
-                keyColour = "bg-gray-600"
-                colourKeyboard(letter, keyColour)
                 box.classList.add(boxColour)
+                if (!correctWord.includes(currentGuess[i])) {
+                    keyColour = "bg-gray-600"
+                    colourKeyboard(letter, keyColour)
+                }
             }
         }
 
