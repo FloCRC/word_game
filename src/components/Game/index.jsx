@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Board from "../Board";
 import Keyboard from "../Keyboard";
 
-export default function Game({ words, correctWord, gameKey }) {
+export default function Game({ words, correctWord }) {
 
-    const numberOfGuesses = 7;
-    let guessesRemaining = numberOfGuesses;
-    let currentGuess = [];
-    let letterCount = 0;
+    const [guessesRemaining, setGuessesRemaining] = useState(7);
+    const [currentGuess, setCurrentGuess] = useState([]);
+    const [letterCount, setLetterCount] = useState(0);
 
     document.addEventListener("keydown", keyboardListener);
 
@@ -44,7 +43,6 @@ export default function Game({ words, correctWord, gameKey }) {
     }
 
     function keyboardListener(e) {
-        console.log(e)
         e.preventDefault()
         let value = e.key
         inputListener({target: {textContent: value}})
@@ -61,8 +59,8 @@ export default function Game({ words, correctWord, gameKey }) {
         let box = row.children[letterCount]
         box.textContent = value
         box.classList.add("filled")
-        currentGuess.push(value)
-        letterCount += 1
+        setCurrentGuess(oldArray => [...oldArray, value])
+        setLetterCount(letterCount + 1)
     }
 
     function deleteLetter() {
@@ -70,8 +68,8 @@ export default function Game({ words, correctWord, gameKey }) {
         let box = row.children[letterCount - 1]
         box.textContent = ""
         box.classList.remove("filled")
-        currentGuess.pop()
-        letterCount -= 1
+        setCurrentGuess(currentGuess.slice(0, -1))
+        setLetterCount(letterCount - 1)
     }
 
     function checkGuess() {
@@ -146,13 +144,13 @@ export default function Game({ words, correctWord, gameKey }) {
 
         if (guess == correctWord) {
             alert("You guessed correctly!")
-            guessesRemaining = 0
+            setGuessesRemaining(0)
             return
         }
         else {
-            guessesRemaining -= 1
-            currentGuess = []
-            letterCount = 0
+            setGuessesRemaining(guessesRemaining - 1)
+            setCurrentGuess([])
+            setLetterCount(0)
 
             if (guessesRemaining === 0) {
                 alert(`You've run out of guesses! The correct word was ${correctWord}`)
@@ -172,8 +170,8 @@ export default function Game({ words, correctWord, gameKey }) {
     return (
         <>
             <div onClick={inputListener} className="flex flex-col justify-center items-center">
-                <Board gameKey={gameKey} />
-                <Keyboard gameKey={gameKey} />
+                <Board />
+                <Keyboard />
             </div>
         </>
     )

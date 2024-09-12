@@ -5,10 +5,8 @@ export default function App() {
 
     const [words, setWords] = useState([]);
     const [correctWord, setCorrectWord] = useState('');
-    const [gameKey, setGameKey] = useState(0)
 
     useEffect(() => {
-
         fetch('popular.json').then(res => {
             return res.json();
         }).then(data => {
@@ -25,7 +23,7 @@ export default function App() {
             console.log(word)
         })
 
-    }, [gameKey])
+    }, [])
 
     function newGame() {
         window.location.reload();
@@ -38,7 +36,7 @@ export default function App() {
                 <button onClick={newGame} className="border rounded p-2 shadow hover:shadow-inner bg-grey-200 hover:bg-green-300">New Game</button>
             </div>
             <div className="flex flex-col justify-center items-center mt-10">
-                <Game words={words} correctWord={correctWord} gameKey={gameKey} />
+                <Game words={words} correctWord={correctWord} />
             </div>
         </div>
     )
