@@ -1,4 +1,4 @@
-export default function Board({ gameKey }) {
+export default function Board() {
 
         function createBoard() {
             let gameBoard = document.getElementById("game-board");

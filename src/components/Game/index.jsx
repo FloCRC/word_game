@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Board from "../Board";
 import Keyboard from "../Keyboard";
 
@@ -7,6 +8,8 @@ export default function Game({ words, correctWord, gameKey }) {
     let guessesRemaining = numberOfGuesses;
     let currentGuess = [];
     let letterCount = 0;
+
+    document.addEventListener("keydown", keyboardListener);
 
     function inputListener(e) {
         if (guessesRemaining === 0) {
@@ -31,12 +34,20 @@ export default function Game({ words, correctWord, gameKey }) {
         }
 
         let letter = value.match(/[a-z]/gi)
+
         if (!letter || letter.length > 1) {
             return
         }
         else {
             addLetter(value)
         }
+    }
+
+    function keyboardListener(e) {
+        console.log(e)
+        e.preventDefault()
+        let value = e.key
+        inputListener({target: {textContent: value}})
     }
 
     function addLetter(value) {

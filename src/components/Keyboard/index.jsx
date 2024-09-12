@@ -1,4 +1,4 @@
-export default function Keyboard({ gameKey }) {
+export default function Keyboard() {
 
     return (
         <>
@@ -27,7 +27,7 @@ export default function Keyboard({ gameKey }) {
                     <button className="keyboard-key p-1 m-1 w-6 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md">l</button>
                 </div>
                 <div className="">
-                    <button className="keyboard-key p-1 m-1 w-12 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md">Del</button>
+                    <button className="keyboard-key p-1 m-1 w-12 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md max-[380px]:w-10">Del</button>
                     <button className="keyboard-key p-1 m-1 w-6 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md">z</button>
                     <button className="keyboard-key p-1 m-1 w-6 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md">x</button>
                     <button className="keyboard-key p-1 m-1 w-6 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md">c</button>
@@ -35,7 +35,7 @@ export default function Keyboard({ gameKey }) {
                     <button className="keyboard-key p-1 m-1 w-6 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md">b</button>
                     <button className="keyboard-key p-1 m-1 w-6 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md">n</button>
                     <button className="keyboard-key p-1 m-1 w-6 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md">m</button>
-                    <button className="keyboard-key p-1 m-1 w-20 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md">Enter</button>
+                    <button className="keyboard-key p-1 m-1 w-20 cursor-pointer uppercase bg-gray-200 border rounded hover:shadow-inner shadow-md max-[380px]:w-14">Enter</button>
                 </div>
             </div>
         </>

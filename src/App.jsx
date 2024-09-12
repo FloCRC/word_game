@@ -33,11 +33,11 @@ export default function App() {
 
     return (
         <div className="h-screen w-screen">
-            <div className="flex flex-col justify-center items-center mt-10">
+            <div className="flex flex-col justify-center items-center mt-6">
                 <h1 className="text-2xl mb-1 font-bold">Word Game</h1>
                 <button onClick={newGame} className="border rounded p-2 shadow hover:shadow-inner bg-grey-200 hover:bg-green-300">New Game</button>
             </div>
-            <div className="flex flex-col justify-center items-center mt-40">
+            <div className="flex flex-col justify-center items-center mt-10">
                 <Game words={words} correctWord={correctWord} gameKey={gameKey} />
             </div>
         </div>
