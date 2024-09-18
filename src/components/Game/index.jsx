@@ -8,8 +8,6 @@ export default function Game({ words, correctWord }) {
     const [currentGuess, setCurrentGuess] = useState([]);
     const [letterCount, setLetterCount] = useState(0);
 
-    document.addEventListener("keydown", keyboardListener);
-
     function inputListener(e) {
         if (guessesRemaining === 0) {
             return
@@ -42,17 +40,11 @@ export default function Game({ words, correctWord }) {
         }
     }
 
-    function keyboardListener(e) {
-        e.preventDefault()
-        let value = e.key
-        inputListener({target: {textContent: value}})
-    }
-
     function addLetter(value) {
         if (letterCount === 6) {
             return
         }
-        
+
         value = value.toLowerCase()
 
         let row = document.getElementsByClassName("row")[7 - guessesRemaining]
@@ -149,10 +141,11 @@ export default function Game({ words, correctWord }) {
         }
         else {
             setGuessesRemaining(guessesRemaining - 1)
+            let guessesRemainingForReal = guessesRemaining - 1
             setCurrentGuess([])
             setLetterCount(0)
 
-            if (guessesRemaining === 0) {
+            if (guessesRemainingForReal === 0) {
                 alert(`You've run out of guesses! The correct word was ${correctWord}`)
             }
         }
