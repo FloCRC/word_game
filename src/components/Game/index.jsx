@@ -155,8 +155,10 @@ export default function Game({ words, correctWord }) {
         for (const key of document.getElementsByClassName("keyboard-key")) {
             if (key.textContent === letter) {
                 key.classList.add(colour)
-                key.classList.remove(`bg-gray-200`)
-                key.classList.add('text-gray-400')
+                key.classList.remove("bg-gray-200")
+                if (colour == "bg-gray-600") {
+                    key.classList.add("text-gray-200")
+                }
             }
         }
     }
