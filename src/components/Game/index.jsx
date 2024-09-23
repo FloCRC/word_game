@@ -156,6 +156,7 @@ export default function Game({ words, correctWord }) {
             if (key.textContent === letter) {
                 key.classList.add(colour)
                 key.classList.remove(`bg-gray-200`)
+                key.classList.add('text-gray-400')
             }
         }
     }
